@@ -1,0 +1,7 @@
+6828 decimal is XXX octal!
+Physical memory: 32768K available, base = 640K, extended = 31744K
+check_boot_pgdir() succeeded!
+page_check() succeeded!
+Welcome to the JOS kernel monitor!
+Type 'help' for a list of commands.
+K> 
