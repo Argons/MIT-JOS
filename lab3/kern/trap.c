@@ -80,10 +80,10 @@ idt_init(void)
 	extern void routine_syscall();
 
 	SETGATE (idt[T_DIVIDE], 0, GD_KT, routine_divide, 0);
-    	SETGATE (idt[T_DEBUG], 0, GD_KT, routine_debug, 0);
-        SETGATE (idt[T_NMI], 0, GD_KT, routine_nmi, 0);
+    SETGATE (idt[T_DEBUG],  0, GD_KT, routine_debug,  0);
+    SETGATE (idt[T_NMI],    0, GD_KT, routine_nmi,    0);
     
-		// break point needs no kernel mode privilege
+    // break point needs no kernel mode privilege
 	SETGATE (idt[T_BRKPT], 0, GD_KT, routine_brkpt, 3);
 
 	SETGATE (idt[T_OFLOW], 0, GD_KT, routine_oflow, 0);
@@ -111,7 +111,7 @@ idt_init(void)
 
 	// Initialize the TSS field of the gdt.
 	gdt[GD_TSS >> 3] = SEG16(STS_T32A, (uint32_t) (&ts),
-					sizeof(struct Taskstate), 0);
+					   sizeof(struct Taskstate), 0);
 	gdt[GD_TSS >> 3].sd_s = 0;
 
 	// Load the TSS

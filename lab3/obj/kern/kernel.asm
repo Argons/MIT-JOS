@@ -4930,7 +4930,7 @@ f0102957:	c6 05 84 b4 15 f0 00 	movb   $0x0,0xf015b484
 f010295e:	c6 05 85 b4 15 f0 8e 	movb   $0x8e,0xf015b485
 f0102965:	c1 e8 10             	shr    $0x10,%eax
 f0102968:	66 a3 86 b4 15 f0    	mov    %ax,0xf015b486
-    	SETGATE (idt[T_DEBUG], 0, GD_KT, routine_debug, 0);
+    SETGATE (idt[T_DEBUG],  0, GD_KT, routine_debug,  0);
 f010296e:	b8 3a 30 10 f0       	mov    $0xf010303a,%eax
 f0102973:	66 a3 88 b4 15 f0    	mov    %ax,0xf015b488
 f0102979:	66 c7 05 8a b4 15 f0 	movw   $0x8,0xf015b48a
@@ -4939,7 +4939,7 @@ f0102982:	c6 05 8c b4 15 f0 00 	movb   $0x0,0xf015b48c
 f0102989:	c6 05 8d b4 15 f0 8e 	movb   $0x8e,0xf015b48d
 f0102990:	c1 e8 10             	shr    $0x10,%eax
 f0102993:	66 a3 8e b4 15 f0    	mov    %ax,0xf015b48e
-        SETGATE (idt[T_NMI], 0, GD_KT, routine_nmi, 0);
+    SETGATE (idt[T_NMI],    0, GD_KT, routine_nmi,    0);
 f0102999:	b8 40 30 10 f0       	mov    $0xf0103040,%eax
 f010299e:	66 a3 90 b4 15 f0    	mov    %ax,0xf015b490
 f01029a4:	66 c7 05 92 b4 15 f0 	movw   $0x8,0xf015b492
@@ -4949,7 +4949,7 @@ f01029b4:	c6 05 95 b4 15 f0 8e 	movb   $0x8e,0xf015b495
 f01029bb:	c1 e8 10             	shr    $0x10,%eax
 f01029be:	66 a3 96 b4 15 f0    	mov    %ax,0xf015b496
     
-		// break point needs no kernel mode privilege
+    // break point needs no kernel mode privilege
 	SETGATE (idt[T_BRKPT], 0, GD_KT, routine_brkpt, 3);
 f01029c4:	b8 46 30 10 f0       	mov    $0xf0103046,%eax
 f01029c9:	66 a3 98 b4 15 f0    	mov    %ax,0xf015b498
@@ -5119,7 +5119,7 @@ f0102ca0:	88 15 4c 73 11 f0    	mov    %dl,0xf011734c
 f0102ca6:	c6 05 4e 73 11 f0 40 	movb   $0x40,0xf011734e
 f0102cad:	c1 e8 18             	shr    $0x18,%eax
 f0102cb0:	a2 4f 73 11 f0       	mov    %al,0xf011734f
-					sizeof(struct Taskstate), 0);
+					   sizeof(struct Taskstate), 0);
 	gdt[GD_TSS >> 3].sd_s = 0;
 f0102cb5:	c6 05 4d 73 11 f0 89 	movb   $0x89,0xf011734d
 }
@@ -5767,11 +5767,11 @@ f0103196:	8b 45 f4             	mov    -0xc(%ebp),%eax
 f0103199:	89 04 24             	mov    %eax,(%esp)
 f010319c:	e8 3a f2 ff ff       	call   f01023db <env_destroy>
 f01031a1:	b8 00 00 00 00       	mov    $0x0,%eax
+			 r = sys_env_destroy ((envid_t) a1); break;
+			  default:
 			  r = -E_INVAL;
 		 }
 	 return r;
-
-	  panic("syscall not implemented");
 }
 f01031a6:	83 c4 20             	add    $0x20,%esp
 f01031a9:	5b                   	pop    %ebx

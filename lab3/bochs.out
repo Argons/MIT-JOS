@@ -32,3 +32,4 @@ TRAP frame at 0xf01b8000
 Destroyed the only environment - nothing more to do!
 Welcome to the JOS kernel monitor!
 Type 'help' for a list of commands.
+K> 
